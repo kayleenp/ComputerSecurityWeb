@@ -7,8 +7,8 @@ $imageBig: 100px;
 $imageSmall: 60px;
 $padding: 10px;
 body{
-	width: 100%;
-	background: var(--dark-blue);
+     background-image: url("study.jpg");
+	
 	overflow-x: hidden;
     font-family: 'Poppins', sans-serif;
 	font-size: 17px;
@@ -118,6 +118,11 @@ position:relative;
 
 
 
+h5
+{
+    font-family: 'Poppins', sans-serif; 
+    color:indianred;
+}
 .form-group .container{
    display: inline-block;
   position: relative;
@@ -342,6 +347,8 @@ background-color:mintcream;
   margin-bottom:10px;
   opacity: 0.8;
 }
+
+
 
 /* Add a red background color to the cancel button */
 .form-container .cancel {
