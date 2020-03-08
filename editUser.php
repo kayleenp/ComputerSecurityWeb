@@ -31,6 +31,7 @@ $hasil=mysqli_query($conn, $query);
        
     <label for="user_type"><b>User Type</b></label>
    <h5> Current User's Role : <?php echo $data['user_type']?></h5>
+        
     <input type="text" placeholder="Enter Usertype" name="user_type" value="<?php echo $data['user_type']?>">
 
    <input type="hidden" name="id" value="<?php echo $data['id'] ?>"/>

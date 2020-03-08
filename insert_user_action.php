@@ -13,7 +13,8 @@
         {
             $username = $_POST['username'];
             $user_type = $_POST['user_type']; 
-            $password = $_POST['password']; 
+            $password = md5($_POST['password']); 
+           
             $id = $_POST['id']; 
             $sql_u = "SELECT * FROM users WHERE username='$username'";
             $res_u = mysqli_query($conn, $sql_u) or die(mysqli_error($conn));

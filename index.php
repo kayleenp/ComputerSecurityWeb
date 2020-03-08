@@ -50,7 +50,9 @@ $msg="";
 <html lang="en"> 
 <head>
 
- 
+   
+    <video autoplay muted loop id="myVideo">
+     <source src="background_video.mp4" type="video/mp4">
 </video>
     <meta charset = "UTF-8">
     <meta name = "author" content = "Group 3">
