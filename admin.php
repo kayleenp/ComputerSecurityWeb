@@ -1,0 +1,104 @@
+<html>
+
+    <head> 
+       
+        <title> Users Data </title>
+       <button> <a href="logout.php">Logout</a></button>
+            <link rel="stylesheet" href="style.css">
+      
+        
+
+       
+    </head>
+    <body> 
+         <div class="table-users"> <h1>USERS</h1>
+    <table> 
+         <br> 
+            <div class="add-user">
+          <button class="add-user-button" onclick="openForm()">+ Add User</button></div>
+        <br> 
+        <tr>
+        
+        <th> ID </th>
+        <th> Username </th>
+        <th> User Role </th>
+        <th> Edit Profile </th>
+        <th> Assign Roles </th>
+        <th> Delete User </th>
+        </tr>
+        <?php
+	session_start();
+	
+	if(!isset($_SESSION['username']) || $_SESSION['role']!="admin"){
+		header("location:index.php");
+    }
+    
+    $conn = new mysqli("localhost","root","","computersecurity");
+    $sql = "SELECT id, username, user_type from users"; 
+    $result = $conn -> query($sql);
+     
+if($result-> num_rows > 0) {
+    
+    while($row = $result -> fetch_assoc()){ 
+    echo "<tr><td>".$row["id"]. "</td><td>".$row["username"]." </td><td>".$row["user_type"]. "</td>"; 
+    echo "<td> <a href=\"editUser.php?id=" . $row['id'] . "\"> " . "EDIT" . " </a> </td>";
+     echo "<td> <a href=\"assign_role.php?role=" . $row['id'] . "\"> " . "Assign roles" . " </a> </td>";
+    echo "<td> <a href=\"delete_user.php?del=" . $row['id'] . "\"> " . "Delete" . " </a> </td>";
+        
+    }
+    echo "</table>"; 
+
+}
+else {
+    echo "0 result"; 
+}
+
+$conn->close(); 
+        ?> </table></div>
+       
+     <h2> Hello : <?$_SESSION['username'] ?></h2>
+<h2> You are a: <? = $_SESSION['user_type']?></h2>       
+        
+<div class="form-popup" id="myForm">
+  <form method="post"  action="insert_user_action.php" class="form-container">
+    <h1>Register New User</h1>
+    
+       <label for="username"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="username" required>
+
+       
+    <label for="user_type"><b>User Type</b></label>
+    <input type="text" placeholder="Enter Usertype" name="user_type" required>
+      
+           
+    <label for="password"><b>Password</b></label>
+    <input type="text" placeholder="Enter Password" name="password" required>
+      
+      <label for="id"><b>ID</b></label>
+    <input type="text" placeholder="Enter ID" name="id" required>
+      
+  
+ 
+
+    <button type="submit" class="btn">Login</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div> 
+    <script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+    </body>
+</html>
+
+
+
+
+
+
+
