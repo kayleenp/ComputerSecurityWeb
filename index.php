@@ -85,6 +85,7 @@ if(isset($_POST['login'])){
                                    initial-scale=1, shrink-to-fit=no">
     
     <title>Multi User Role Login</title>
+   
         <link rel="stylesheet" href="style.css"> 
     </head>
     
@@ -95,7 +96,7 @@ if(isset($_POST['login'])){
 <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post" class="p-4"> 
                 <div class = "form-group"> 
                 <h2> Login Form </h2>
-                
+                 <a href=registration.php> DON'T HAVE AN ACCOUNT YET? REGISTER NOW </a>
                     <h5 ><?= $msg; ?></h5>
                     
                     <h5 ><?= $msg2; ?></h5>

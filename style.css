@@ -8,7 +8,8 @@ $imageSmall: 60px;
 $padding: 10px;
 body{
      background-image: url("study.jpg");
-	
+	width: 100%;
+	background: var(--dark-blue);
 	overflow-x: hidden;
     font-family: 'Poppins', sans-serif;
 	font-size: 17px;

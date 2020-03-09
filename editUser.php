@@ -6,6 +6,32 @@ $id = $_GET['id'];
 $query = "SELECT * FROM users WHERE id=".$id;
 $hasil=mysqli_query($conn, $query); 
 
+$expireAfter = 30;
+ 
+//Check to see if our "last action" session
+//variable has been set.
+if(isset($_SESSION['last_action'])){
+    
+    //Figure out how many seconds have passed
+    //since the user was last active.
+    $secondsInactive = time() - $_SESSION['last_action'];
+    
+    //Convert our minutes into seconds.
+    $expireAfterSeconds = $expireAfter * 60;
+    
+    //Check to see if they have been inactive for too long.
+    if($secondsInactive >= $expireAfterSeconds){
+        //User has been inactive for too long.
+        //Kill their session.
+        session_unset();
+        session_destroy();
+    }
+    
+}
+ 
+//Assign the current timestamp as the user's
+//latest activity
+$_SESSION['last_action'] = time();
 ?>
  <head> 
     
@@ -27,7 +53,17 @@ $hasil=mysqli_query($conn, $query);
        <label for="username"><b>Username</b></label>
      <h5> Current Username : <?php echo $data['username']?></h5>
     <input type="text" placeholder="Enter Username" name="username" value="<?php echo $data['username']?>"/> 
-
+        
+        <h5> Current Full Name : <?php echo $data['full_name']?></h5>
+    <input type="text" placeholder="Enter Fullname" name="full_name" value="<?php echo $data['full_name']?>"/>
+        
+        <h5> Current Email : <?php echo $data['email']?></h5>
+    <input type="text" placeholder="Enter Email" name="email" value="<?php echo $data['email']?>"/>
+        
+        <h5> Current DOB: <?php echo $data['dob']?></h5>
+    <input type="date" placeholder="Enter DOB" name="dob" value="<?php echo $data['dob']?>"/>
+        
+        
        
     <label for="user_type"><b>User Type</b></label>
    <h5> Current User's Role : <?php echo $data['user_type']?></h5>

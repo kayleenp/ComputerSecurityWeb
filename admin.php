@@ -21,7 +21,10 @@
         
         <th> ID </th>
         <th> Username </th>
-        <th> User Role </th>
+         <th> Full Name </th> 
+        <th> Email</th>
+        <th> DOB </th>
+        <th> Role </th>
         <th> Edit Profile </th>
         <th> Assign Roles </th>
         <th> Delete User </th>
@@ -34,13 +37,13 @@
     }
     
     $conn = new mysqli("localhost","root","","computersecurity");
-    $sql = "SELECT id, username, user_type from users"; 
+    $sql = "SELECT id, username, full_name, email, dob, user_type from users"; 
     $result = $conn -> query($sql);
      
 if($result-> num_rows > 0) {
     
     while($row = $result -> fetch_assoc()){ 
-    echo "<tr><td>".$row["id"]. "</td><td>".$row["username"]." </td><td>".$row["user_type"]. "</td>"; 
+    echo "<tr><td>".$row["id"]. "</td><td>".$row["username"]." </td><td>".$row["full_name"]. "</td><td>".$row["email"]. "</td><td>".$row["dob"]. "</td><td>".$row["user_type"]. "</td>";
     echo "<td> <a href=\"editUser.php?id=" . $row['id'] . "\"> " . "EDIT" . " </a> </td>";
      echo "<td> <a href=\"assign_role.php?role=" . $row['id'] . "\"> " . "Assign roles" . " </a> </td>";
     echo "<td> <a href=\"delete_user.php?del=" . $row['id'] . "\"> " . "Delete" . " </a> </td>";
@@ -65,18 +68,19 @@ $conn->close();
     
        <label for="username"><b>Username</b></label>
     <input type="text" placeholder="Enter Username" name="username" required>
-
-       
+        <label for="full_name"><b>Full Name</b></label>
+    <input type="text" placeholder="Enter Full Name" name="full_name" required>
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" name="email" required>
+    <label for="dob">Date Of Birth</label>
+    <input type="date" id="dob" name="dob" required>
     <label for="user_type"><b>User Type</b></label>
     <input type="text" placeholder="Enter Usertype" name="user_type" required>
       
            
     <label for="password"><b>Password</b></label>
-    <input type="text" placeholder="Enter Password" name="password" required>
-      
-      <label for="id"><b>ID</b></label>
-    <input type="text" placeholder="Enter ID" name="id" required>
-      
+    <input type="password" placeholder="Enter Password" name="password" required>
+   
   
  
 
