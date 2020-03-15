@@ -33,7 +33,7 @@
             
             if($result) 
             {
-                echo 'Data is updated';
+                header("location:index.php")
             }
             else 
             {
