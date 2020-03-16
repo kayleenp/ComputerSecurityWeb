@@ -29,6 +29,7 @@ p{
 	font-size: 17px;
 	line-height: 30px;
 	color: floralwhite;
+	font-size: 24;
 	letter-spacing: 1px;
 	font-weight: 500;
 	-webkit-transition: all 300ms linear;
@@ -47,12 +48,13 @@ h2{
 }
 .form-group { 
     width: 550px; 
-    height: 450px; 
+    height: 950px; 
     margin: 60px auto; 
     position:relative; 
     background: rgba(0,0,0,0.3); 
     text-align: center; 
-    margin-top: 60px;
+    margin-top: 40px;
+	margin-bottom:40px;
     padding: 35px; 
     border: 3px solid #fff; 
     -webkit-border-radius:70px 0 70px 0; ;
@@ -97,6 +99,19 @@ input .custom-radio{
     
 
 }
+.form-group .row1:after { 
+     display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.form-group .row2:after { 
+   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
 
 .form-group .login-button:hover{
    
@@ -116,18 +131,22 @@ position:relative;
 
 }
 
-
-
-
 h5
 {
     font-family: 'Poppins', sans-serif; 
     color:indianred;
 }
+
+.form-group .column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
 .form-group .container{
-   display: inline-block;
-  position: relative;
-  padding-left: 30px;
+   display: inline;
+  position: inherit;
+  float:left; 
   margin-bottom: 12px;
   cursor: pointer;
   font-size: 22px;
@@ -137,8 +156,28 @@ h5
   user-select: none;
 }
 
+.form-group .container1{
+    float: left;
+   display: inline;
+  position: relative;
 
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 .container input { 
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.container1 input { 
   position: absolute;
   opacity: 0;
   cursor: pointer;
@@ -316,6 +355,8 @@ background-color:mintcream;
   width: 100%;
   margin-bottom:10px;
   opacity: 0.8;
+  font-size: 24;
+  color: yellow;
  
 }
 
@@ -323,10 +364,14 @@ background-color:mintcream;
 .form-container input[type=text]:focus, .form-container input[type=password]:focus {
   background-color: #ddd;
   outline: none;
+  font-size: 24;
+  color: maroon;
 }
 .edit_user_form input[type=text]:focus, .form-container input[type=password]:focus {
   background-color: #ddd;
   outline: none;
+  font-size: 24;
+  color: maroon;
 }
 
 .edit_user_form input[type=text], .form-container input[type=password] {
@@ -335,6 +380,8 @@ background-color:mintcream;
   margin: 5px 0 22px 0;
   border: none;
   background: #f1f1f1;
+  font-size: 24;
+  color: maroon;
 
 }
 /* Set a style for the submit/login button */
@@ -363,7 +410,8 @@ background-color:mintcream;
 
 
 .edit_user_form {
-    
+    font-size: 24;
+  color: yellow;
     
 }
 
@@ -371,9 +419,13 @@ background-color:mintcream;
     color: maroon;
     font-weight: 500;
     font-family: 'Poppins', sans-serif; 
+	font-size: 24;
+  color: maroon;
 }
 
 .edit_user_form textarea:focus, input:focus {
     color: maroon;
     font-weight: 500;
+	font-size: 24;
+  color: maroon;
 }

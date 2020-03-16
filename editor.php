@@ -29,12 +29,13 @@
         </tr>
         <?php
 	session_start();
-	
+    include '../../database/db_connection.php';
+    $conn = OpenCon();
 	if(!isset($_SESSION['username']) || $_SESSION['role']!="editor"){
 		header("location:index.php");
     }
     
-    $conn = new mysqli("localhost","root","","computersecurity");
+
     $sql = "SELECT id, username, full_name, email, dob, user_type from users"; 
     $result = $conn -> query($sql);
      

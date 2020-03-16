@@ -1,5 +1,6 @@
 <?php 
-$conn = new mysqli("localhost","root","","computersecurity");
+include '../../database/db_connection.php';
+$conn = OpenCon();
  
 if(isset($_GET['del']))
 {

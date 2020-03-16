@@ -1,7 +1,8 @@
 <?php 
 session_start(); 
 
-$conn = new mysqli("localhost","root","","computersecurity");
+include '../../database/db_connection.php';
+$conn = OpenCon();
 $id = $_GET['id']; 
 $query = "SELECT * FROM users WHERE id=".$id;
 $hasil=mysqli_query($conn, $query); 
@@ -43,35 +44,35 @@ $_SESSION['last_action'] = time();
 <body>
 
 
-<form method="post" action="edit_user_backend.php" > 
+<form method="POST" action="edit_user_backend.php" > 
     <?php while($data=mysqli_fetch_array($hasil)){ ?>
    
     <div class="edit_user_form" id="editUser">
  
     <h1>Edit Profile</h1>
        
-       <label for="username"><b>Username</b></label>
      <h5> Current Username : <?php echo $data['username']?></h5>
     <input type="text" placeholder="Enter Username" name="username" value="<?php echo $data['username']?>"/> 
         
-        <h5> Current Full Name : <?php echo $data['full_name']?></h5>
+    
+    <h5> Current Full Name : <?php echo $data['full_name']?></h5>
     <input type="text" placeholder="Enter Fullname" name="full_name" value="<?php echo $data['full_name']?>"/>
         
-        <h5> Current Email : <?php echo $data['email']?></h5>
+        
+     <h5> Current Email : <?php echo $data['email']?></h5>
     <input type="text" placeholder="Enter Email" name="email" value="<?php echo $data['email']?>"/>
         
+    
         <h5> Current DOB: <?php echo $data['dob']?></h5>
     <input type="date" placeholder="Enter DOB" name="dob" value="<?php echo $data['dob']?>"/>
         
-        
-       
-    <label for="user_type"><b>User Type</b></label>
+
    <h5> Current User's Role : <?php echo $data['user_type']?></h5>
         
     <input type="text" placeholder="Enter Usertype" name="user_type" value="<?php echo $data['user_type']?>">
 
    <input type="hidden" name="id" value="<?php echo $data['id'] ?>"/>
-        <input class="update_button" type="submit" value="Update Data"/>
+        <input class="update_button" name="submit" type="submit" value="Update Data"/>
     
         
   

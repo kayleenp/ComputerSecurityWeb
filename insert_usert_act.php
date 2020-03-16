@@ -1,7 +1,9 @@
 
 
 <?php
-    $conn = new mysqli("localhost","root","","computersecurity");
+
+include '../../database/db_connection.php';
+$conn = OpenCon(); 
     if(isset($_POST['submit']))
     {
         if(empty($_POST['username']) || empty($_POST['user_type']) || empty($_POST['id']) || empty($_POST['password'])) 

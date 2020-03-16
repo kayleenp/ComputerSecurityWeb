@@ -25,13 +25,15 @@
 
         </tr>
         <?php
+    include '../../database/db_connection_student.php';
 	session_start();
 	
 	if(!isset($_SESSION['username']) || $_SESSION['role']!="student"){
 		header("location:index.php");
     }
     
-    $conn = new mysqli("localhost","root","","computersecurity");
+    
+    $conn = OpenCon(); 
     $sql = "SELECT id, username, full_name, email, dob, user_type from users"; 
     $result = $conn -> query($sql);
      

@@ -1,8 +1,8 @@
 
 <?php 
 session_start(); 
-
-$conn = new mysqli("localhost","root","","computersecurity");
+include '../../database/db_connection.php';
+    $conn = OpenCon(); 
 $id = $_GET['role']; 
 $query = "SELECT * FROM users WHERE id=".$id;
 $hasil=mysqli_query($conn, $query);  

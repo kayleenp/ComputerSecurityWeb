@@ -1,22 +1,33 @@
 <script src='https://www.google.com/recaptcha/api.js'></script>
 
 <?php
+include '../../database/db_connection.php';
 session_start();
 
-$conn = new mysqli("localhost","root","","computersecurity");
+$conn = OpenCon(); 
 
 $msg="";
 $msg2="";
 
 if(isset($_POST['login'])){
 	$username = $_POST['username'];
-  
 	$password = $_POST['password'];
 	$password = md5($password);
 	$userType = $_POST['userType'];
     $response = $_POST["g-recaptcha-response"];
 	
-	$sql = "SELECT * FROM users WHERE username=? AND password=? AND user_type=?";
+    if($userType == "admin"){
+	$sql = "SELECT * FROM admin WHERE username=? AND password=? AND user_type=?";
+    }
+    if($userType == "student"){
+       $sql = "SELECT * FROM student WHERE username=? AND password=? AND user_type=?"; 
+    }
+    if($userType == "teacher") {
+        $sql = "SELECT * FROM teacher WHERE username=? AND password=? AND user_type=?";
+    }
+    if($userType == "editor") {
+        $sql = "SELECT * FROM editor WHERE username=? AND password=? AND user_type=?"; 
+    }
 	$stmt=$conn->prepare($sql);
 	$stmt->bind_param("sss",$username,$password,$userType);
 	$stmt->execute();
@@ -104,44 +115,47 @@ if(isset($_POST['login'])){
                 <p> Username: </p>
                      
                 <input type="text" name="username">
+                    
                 <p> Password: </p>
                 <input type="password" name="password" placeholder="Password" required>
                  <p>  </p>      
                     <label for="userType"> I'm a :</label>
              <div class="radio-button">
-                   
-                  <label class="container"> <input type="radio" name ="userType" value="student" class = "custom-radio2" required>&nbsp; <span class="checkmark2"> STUDENT</span>
-                 </label>     
-                     
-                 <label class="container"> <input type="radio" name ="userType" value="teacher" class = "custom-radio2" required>&nbsp; <span class="checkmark2"> TEACHER </span>
-                 </label>
+                 <div class="row1" >
+                     <div class = "column">
+                         
+                  <label class="container"><img src="student.png" alt="Student" style="width:10%"> <input type="radio" name ="userType" value="student" class = "custom-radio2" required>&nbsp; <span class="checkmark2"> STUDENT</span> 
+                 </label>     </div>
                  
-                 <label class="container">
+                   <div class = "column" >
+                 <label class="container"><img src="teacher.png" alt="Teacher" style="width:10%"> <input type="radio" name ="userType" value="teacher" class = "custom-radio2" required>&nbsp; <span class="checkmark2"> TEACHER </span> 
+                 </label>
+                 </div></div>
+                 
+                <div class="row2" >
+                    <div class = "column" >
+                 <label class="container"><img src="admin.png" alt="Editor" style="width:12%">
                 <input type="radio" name ="userType" value="admin" class = "custom-radio3" required>&nbsp;
-                <span class="checkmark3"> ADMIN </span>
-                 </label>
-                 
-                 <label class="container">
-                     <input type="radio" name ="userType" value="editor" class = "custom-radio4" required>&nbsp; <span class="checkmark4"> EDITOR </span>   </label>
-                 
+                <span class="checkmark3"> ADMIN </span>  <br>
+                        </label></div>
+                  <div class = "column" >
+                 <label class="container"><img src="editor.png" alt="Editor" style="width:10%">
+                     <input type="radio" name ="userType" value="editor" class = "custom-radio4" required>&nbsp; <span class="checkmark4"> EDITOR </span>  <br>  </label></div></div>
+                    
+                    </div>
+                    
                  <div class="g-recaptcha" data-sitekey="6Ld0gN8UAAAAAODV2JMJSi7o9iBAFftjnZYT8vPO"></div>
                  <a class="login-button">
                 <span class = "login-button-text"><input type ="submit" name="login"></span>
                 </a>
-            </div>
-                
-                
+        
                 
 				
     </div>
                 </form>
-              
-		
+        
+        
 
-
-
-         
-          
       
     </body>
 
