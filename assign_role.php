@@ -8,13 +8,6 @@ $query = "SELECT * FROM users WHERE id=".$id;
 $hasil=mysqli_query($conn, $query);  
 $result=mysqli_fetch_array($query);
 
-<?php 
-session_start(); 
-
-$conn = new mysqli("localhost","root","","computersecurity");
-$id = $_GET['id']; 
-$query = "SELECT * FROM users WHERE id=".$id;
-$hasil=mysqli_query($conn, $query); 
 
 $expireAfter = 30;
  
